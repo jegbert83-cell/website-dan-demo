@@ -1,11 +1,9 @@
-# website-dan-demo
-Live AI Business Partner - Dan
 # 🏍️ Dan - AI Business Partner
 
 > **"Your business rhythm is off. I can feel it from here." - Dan**
 
 ## 🚀 Live Demo
-**[Talk to Dan Live](https://yourusername.github.io/website-dan-demo)**
+**[Talk to Dan Live](#)** *(Your live link will appear here after deployment)*
 
 ## 🎯 What is Dan?
 Dan is the world's first **soul-aware business intelligence platform**. Unlike traditional AI that measures data, Dan measures **human energy, team rhythm, and operational tempo**.
@@ -44,3 +42,7 @@ We're not building another AI tool. We're building **AI team members** that comp
 ---
 
 *"Most tools measure data. We measure souls."*
+
+---
+
+**⚠️ Demo Notice:** This is a demonstration only. Not for actual business decisions.

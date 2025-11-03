@@ -229,6 +229,9 @@
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
+            border: none;
+            font-family: inherit;
+            font-size: 14px;
         }
 
         .quick-btn:hover {
@@ -349,10 +352,10 @@
                 </div>
 
                 <div class="quick-questions">
-                    <div class="quick-btn" onclick="askQuickQuestion('My team feels disconnected')">Team disconnected</div>
-                    <div class="quick-btn" onclick="askQuickQuestion('We are not growing')">Not growing</div>
-                    <div class="quick-btn" onclick="askQuickQuestion('Everything feels chaotic')">Everything chaotic</div>
-                    <div class="quick-btn" onclick="askQuickQuestion('Our processes are inefficient')">Inefficient processes</div>
+                    <button class="quick-btn" onclick="askQuickQuestion('My team feels disconnected')">Team disconnected</button>
+                    <button class="quick-btn" onclick="askQuickQuestion('We are not growing')">Not growing</button>
+                    <button class="quick-btn" onclick="askQuickQuestion('Everything feels chaotic')">Everything chaotic</button>
+                    <button class="quick-btn" onclick="askQuickQuestion('Our processes are inefficient')">Inefficient processes</button>
                 </div>
             </div>
         </div>
@@ -408,8 +411,35 @@
         }
 
         function askQuickQuestion(question) {
-            userInput.value = question;
-            sendMessage();
+            // Add user message
+            addMessage(question, true);
+            
+            // Show typing indicator
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'message dan-message';
+            typingIndicator.innerHTML = '<strong>Dan:</strong> Thinking<span class="typing-indicator"></span><span class="typing-indicator"></span><span class="typing-indicator"></span>';
+            chatMessages.appendChild(typingIndicator);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Dan's response
+            setTimeout(() => {
+                chatMessages.removeChild(typingIndicator);
+                
+                let response = danResponses.default;
+                const lowerQuestion = question.toLowerCase();
+                
+                if (lowerQuestion.includes('team') || lowerQuestion.includes('disconnect')) {
+                    response = danResponses['team disconnected'];
+                } else if (lowerQuestion.includes('grow') || lowerQuestion.includes('growth') || lowerQuestion.includes('not growing')) {
+                    response = danResponses['not growing'];
+                } else if (lowerQuestion.includes('chaos') || lowerQuestion.includes('chaotic')) {
+                    response = danResponses['everything chaotic'];
+                } else if (lowerQuestion.includes('process') || lowerQuestion.includes('inefficient')) {
+                    response = danResponses['inefficient processes'];
+                }
+
+                addMessage(response);
+            }, 1500);
         }
 
         function sendMessage() {
@@ -426,7 +456,7 @@
             chatMessages.appendChild(typingIndicator);
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // Dan's response (simulated AI)
+            // Dan's response
             setTimeout(() => {
                 chatMessages.removeChild(typingIndicator);
                 
